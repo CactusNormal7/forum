@@ -70,5 +70,5 @@ func main() {
 	http.HandleFunc("/login", loginHandler)
 	fs := http.FileServer(http.Dir("public/"))
 	http.Handle("/public/", http.StripPrefix("/public/", fs))
-	http.ListenAndServe(":8081", nil)
+	http.ListenAndServe(":8080", nil)
 }
