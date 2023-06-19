@@ -1,0 +1,25 @@
+{{define "leftbar"}}
+<div id="leftbarcontainerall">
+    <ul id="leftbarheaderul">
+        <li id="disconnect" class="leftbarheaderli"><a href="">disconnect</a></li>
+        <li id="register" class="leftbarheaderli"><a href="/register">register</a></li>
+        <li class="leftbarheaderli"><a href="">login</a></li>
+    </ul>
+</div>
+
+<script>
+    const disconnect = document.getElementById("disconnect")
+    const register = document.getElementById("register")
+    disconnect.addEventListener("click", () => {
+        localStorage.removeItem("username")
+        localStorage.removeItem("password")
+        window.location.reload()
+    })
+    register.addEventListener("click", () => {
+        localStorage.removeItem("username")
+        localStorage.removeItem("password")
+        window.location.reload()
+    })
+
+</script>
+{{end}}

@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+element {
+    --blackbg: #262323;
+    --orangebg: #FF9900;
+  }
+
+#containerall {
+    width: 83vw;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh - 200px;
+    flex-direction: column;
+    z-index: -2;
+    background-color:#262323;
+}
+
+#containerall :first-child {
+}
+
+#containerall > * {
+    z-index: 10;
+}
+
+#containerchannels {
+    width: 80%;
+    height: 80%;
+    border: 5px solid;
+    border-color: #FF9900;
+}
+
+.channeldiv {
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+    color: #FF9900;
+    font-size: 23px;
+    border-bottom: 5px solid;
+    border-color: #FF9900;
+}
+
+#addchannelbuttondiv {
+    display: flex;
+    justify-content: right;
+    width: 80%;
+    height: 10%;
+}
+
+#addchannelbutton {
+    height: 50%;
+    background-color:#262323;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    border: 5px solid ;
+    color:#FF9900;
+    border-color: #FF9900;
+    cursor: pointer;
+    transition: 0.3s ease
+}
+
+#addchannelbutton:hover{
+    background-color: #FF9900;
+    color: #262323;
+}
+
+#addchanneldiv {
+    position: absolute;
+    width: 25vw;
+    height: 50vh;
+    display: none;
+    transition: 0.5s ease;
+    justify-content: center;
+    background-color: #262323;
+    border: 10px solid;
+    border-color: #FF9900;
+    top: 20vh;
+    left: 40vw;
+    z-index: 15;
+}
+
+#addchannelform {
+    gap: 14%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addchannelinput {
+    width: 15vw;
+    height: 7%;
+    border-radius: 6px;
+    border: 0px solid;
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+    color: #262323;
+    font-size: 15px;
+    background-color: #FF9900;
+}
+
+#submitchannel {
+    border: 0px solid;
+    background-color: #FF9900;
+    font-family: "Roboto",sans-serif;
+    font-size: 17px;
+    font-weight: bolder;
+    border-radius: 8px;
+    color: #262323;
+    padding: 10px;
+}
+
+.channeltittlesection {
+    border-right: 5px solid;
+    padding: 10px 20px 10px 20px;
+    }
+
+.channelaboutsection {
+    padding: 10px 20px 10px 20px;
+}
+
+.buttonopenchannel {
+    margin-right: 40px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 4px;
+    border: 0px solid;
+    font-size: 18px;
+    background-color: #FF9900;
+    color: #262323;
+    font-family: 'Roboto',sans-serif;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+}

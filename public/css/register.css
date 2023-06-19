@@ -1,0 +1,80 @@
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color:#262323;
+}
+
+
+#divContainerAll{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#submitbuttonregister {
+    background-color: #262323;
+    padding: 10px 30px 10px 30px;
+    border-radius: 100px;
+    font-size: 18px;
+    color: #FF9900;
+    border: 0px solid;
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+    cursor:pointer;
+}
+
+#registerDivContainer {
+    width: 100vw; 
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.registerInput {    
+    padding: 10px 15px 10px 15px;
+    border-radius:320px;
+    border: 0px solid;
+    width: 100%;
+    height: 25px;
+    background-color: #262323 ;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #FF9900;
+}
+
+.labelregister {
+    margin-bottom: 4px;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+    color: #262323;
+}
+
+#containerRegister {
+    margin-top: 100px;
+    width: 35vw;
+    height: 43vh;
+    border-radius: 20px;
+    background-color: #FF9900;
+}
+
+#registerForm {
+    margin-top: 7vh;
+    gap: 33px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerformdiv {
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+html {
+    margin: 0;  
+    padding: 0;
+}
+
+#leftbarcontainerall {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 17vw;
+    z-index: -1;
+    height: 100vh;
+    border-right: 5px solid;
+    border-color: #FF9900;
+    background-color:#262323;
+
+}
+
+#leftbarcontainerall::content{
+    z-index: 10;
+}
+
+#leftbarheaderul{
+    font-size: 18px;
+    font-weight: bolder;
+    color: #FF9900;
+    margin-top: 15vh;
+    font-family: "Roboto",sans-serif;
+}
+
+.leftbarheaderli > a {
+    color: #FF9900;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.leftbarheaderli {
+    margin-top: 2vh;
+    margin-left: 3vw;
+}

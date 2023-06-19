@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/register.css">
+</head>
+<body>
+    <iframe style="display: none;" name="dummyframe" id="dummyframe" frameborder="0"></iframe>
+    <div id="divContainerAll">
+        <div id="registerDivContainer">
+            <div id="containerRegister">
+                <div id="registerForm" target="/dummyframe">
+                    <div class="registerformdiv">
+                        <label class="labelregister" for="">username</label>
+                        <input id="username" class="registerInput" type="text" name="username" id="">
+                    </div>
+                    <div class="registerformdiv">
+                        <label class="labelregister" for="">email</label>
+                        <input id="mail" class="registerInput" type="email" name="mail" id="">
+                    </div>
+                    <div class="registerformdiv">
+                        <label class="labelregister" for="">password</label>
+                        <input id="password" class="registerInput" type="password" name="password" id="">
+                    </div>
+                    <button id="submitbuttonregister">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    document.getElementById("submitbuttonregister").addEventListener("click", () => {
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        let mail = document.getElementById("mail").value
+        if (username !== "" & password !== "" & mail !== "") {
+            fetch(`https://service-apiforum.onrender.com/adduser?username=${username}&password=${password}&mail=${mail}`)
+            window.location.href = "/login"
+        } else {
+            console.log("tous les champs sont obligatoires");
+        }
+    })
+    
+</script>

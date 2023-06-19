@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/header2.css">
+    <link rel="stylesheet" href="public/css/index.css">
+    <link rel="stylesheet" href="public/css/leftbar.css">
+</head>
+
+<body>
+    <iframe style="display: none;" name="dummyframe" id="dummyframe" frameborder="0"></iframe>
+    <div id="addchanneldiv">
+        <div id="addchannelform" target="/dummyframe">
+            <input id="inputchanneltittle" class="addchannelinput" type="text" name="tittle">
+            <input id="inputchannelabout" class="addchannelinput" type="text" name="about">
+            <button id="submitchannel" type="submit">submit</button>
+        </div>
+    </div>
+    <!-- <button><a href="/clearhandler">clearhandler</a></button> -->
+    {{template "navbar2"}}
+    {{template "leftbar"}}
+    <div id="containerall">
+        <div id="addchannelbuttondiv">
+            <button id="addchannelbutton">ADD CHANNEL</button>
+        </div>
+        <div id="containerchannels">
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    if (localStorage.getItem("username") === null) {
+        window.location.href = "/login"
+    }
+
+    // document.getElementById("submitchannel").addEventListener("click", () => {
+    //     window.location.reload()
+    // })
+    
+    document.getElementById("submitchannel").addEventListener("click", () => {
+        let username = document.getElementById("inputchanneltittle").value
+        let password = document.getElementById("inputchannelabout").value
+        fetch(`https://service-apiforum.onrender.com/addchannel?tittle=${username}&about=${password}`)
+        window.location.reload()
+    })
+
+    document.getElementById("addchannelbutton").addEventListener("click", () => {
+        if (document.getElementById("addchanneldiv").style.display === "flex") {
+            document.getElementById("addchanneldiv").style.display = "none"
+        }else{
+            document.getElementById("addchanneldiv").style.display = "flex"
+        }
+    })
+    const params = new URLSearchParams(window.location.search)
+    const containerchannel = document.getElementById("containerchannels")
+
+    document.getElementById("containerall").style.height = window.innerHeight - document.getElementById("headertemplate").clientHeight + "px"
+    let channels = fetch("https://service-apiforum.onrender.com/channels")
+        .then(response => response.json())
+        .then(channels => channels)
+
+    channels
+        .then(data => {
+            for (let i = 0; i < data.length; i++) {
+                console.log(data);
+                let div = document.createElement("div")
+                let div3 = document.createElement("div")
+                let div2 = document.createElement("div")
+                let div4 = document.createElement("div")
+                
+                let button = document.createElement("button")
+                div.style.display = "flex"
+                div4.appendChild(div2)
+                div4.appendChild(div3)
+                div.appendChild(div4)
+                div4.style.display = "flex"
+                div.style.alignItems = "center"
+                div.style.justifyContent = "space-between"
+                div2.innerHTML = data[i].tittle
+                div2.classList.add("channeltittlesection")
+                div.classList.add("channeldiv")
+                div3.innerHTML = data[i].about
+                div3.classList.add("channelaboutsection")
+                div.appendChild(button)
+                button.classList.add("buttonopenchannel")
+                containerchannel.appendChild(div)
+                button.innerHTML = "open"
+            }
+            let allchannels = document.querySelectorAll('.buttonopenchannel')
+            for (let i = 0; i < allchannels.length; i++) {
+                allchannels[i].addEventListener("click", () => {
+                    window.location.href = `/channel?id=${data[i].id}`
+                })
+            }
+        })
+
+
+
+</script>

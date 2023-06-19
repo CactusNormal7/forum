@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/header2.css">
+    <link rel="stylesheet" href="public/css/channel.css">
+    <link rel="stylesheet" href="public/css/leftbar.css">
+</head>
+
+<body>
+
+    {{template "navbar2"}}
+    {{template "leftbar"}}
+    <div id="containerall">
+        <h1 id="ChanTittle"></h1>
+        <div id="containermsg">
+            <div id="divcontainermsg"></div>
+            <textarea id="textarea" name="" id="" cols="30" rows="5"></textarea>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+
+    if (localStorage.getItem("username") === null) {
+        window.location.href = "/login"
+    }
+    // document.getElementById("containerall").style.height = window.innerHeight - document.getElementById("headertemplate").clientHeight + "px"
+
+    const textarea = document.getElementById("textarea")
+    const params = new URLSearchParams(window.location.search)
+    const containermsg = document.getElementById("divcontainermsg")
+    let channels = fetch("https://service-apiforum.onrender.com/getmsgchannel?channelid=" + params.get("id"))
+        .then(response => response.json())
+        .then(channels => channels)
+    let users = fetch("https://service-apiforum.onrender.com/users")
+        .then(response => response.json())
+        .then(channels => channels)
+    let curChannel = fetch("https://service-apiforum.onrender.com/getchannelinfo?channelid=" + params.get("id"))
+        .then(response => response.json())
+        .then(curChannel => curChannel)
+        .then(data => {
+            document.getElementById("ChanTittle").innerHTML = data.tittle
+        })
+    // console.log(data.find(item => item.id === 0));
+    users.then(
+        data3 => {
+            channels
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        let currentuser = data3.find(item => item.id === data[i].senderid)
+                        let compteur = 0
+                        if (currentuser.username == localStorage.getItem("username")) {
+                            compteur = 1
+                        }
+                        let div = document.createElement("div")
+                        let div2 = document.createElement("div")
+                        users
+                            .then(data2 => {
+                                let tittle1 = document.createElement("h1")
+                                if (compteur === 1) {
+                                    tittle1.innerHTML = "ME"
+                                } else {
+                                    tittle1.innerHTML = currentuser.username
+
+                                }
+                                tittle1.classList.add("usernamemsg")
+                                div2.insertBefore(tittle1, div2.firstChild)
+                            })
+                        div.innerHTML = data[i].content
+                        div.classList.add("msgdiv")
+                        div2.appendChild(div)
+                        if (compteur === 0) {
+                            div2.classList.add("msgusercontainer")
+                        } else {
+                            div2.classList.add("msgusercontainerr")
+                        }
+                        containermsg.appendChild(div2)
+
+                    }
+                })
+        })
+
+    users
+        .then(data => {
+            textarea.addEventListener("focus", () => {
+                addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        let currentuser = data.find(item => item.username === localStorage.getItem("username"))
+                        fetch(`https://service-apiforum.onrender.com/addmsg?content=${textarea.value}&senderid=${currentuser.id}&channelid=${params.get("id")}`)
+                        window.location.reload()
+                    }
+                })
+            })
+        })
+
+</script>

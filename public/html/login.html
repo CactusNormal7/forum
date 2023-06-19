@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/login.css">
+    <link rel="stylesheet" href="public/css/header.css">
+</head>
+<body>
+    <div style="z-index: 20;">
+        {{template "navbar"}}
+    </div>
+    <div id="divContainerAll">
+        <div id="registerDivContainer">
+            <div id="containerRegister">
+                <div id="registerForm">
+                    <div class="registerformdiv">
+                        <label class="labelregister" for="">username</label>
+                        <input id="inputusername" class="registerInput" type="name" name="name" id="">
+                    </div>
+                    <div class="registerformdiv">
+                        <label class="labelregister" for="">password</label>
+                        <input id="inputpassword" class="registerInput" name="password" type="password" id="">
+                    </div>
+                    <button id="submitbuttonregister">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    if (localStorage.getItem("username") !== null) {
+        window.location.href = "/"
+    }
+
+    document.getElementById("submitbuttonregister").addEventListener("click", () => {
+        let username = document.getElementById("inputusername").value
+        let password = document.getElementById("inputpassword").value
+        fetch(`https://service-apiforum.onrender.com/getuserv?username=`+ username)
+        .then(response => response.json())
+        .then(loaddata => {
+            if (loaddata.username === "") {
+                alert("user not found")
+            }else if (loaddata.password !== password) {
+                alert("password incorrect")
+            }else if (loaddata.password === password) {
+                console.log("connected succesfully ");
+                localStorage.setItem("username", loaddata.username)
+                localStorage.setItem("password", loaddata.password)
+            }
+            window.location.reload()
+        })
+    })
+</script>
